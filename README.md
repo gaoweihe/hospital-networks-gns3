@@ -37,6 +37,7 @@ write memory
 ```
 
 [dcm4che](https://github.com/dcm4che/dcm4chee-arc-light.git "dcm4che") 
+4 vCPU, 4 GB DRAM, 8 GiB HDD
 
 ```
 sudo snap install docker
@@ -76,8 +77,15 @@ sudo docker run --network=dcm4chee_network --name arc \
 ```
 
 Mirth Connect 
+4 GiB HDD 
 
 ```
+sudo snap install docker
+sudo docker rm -f $(sudo docker ps -a -q)
 sudo docker pull nextgenhealthcare/connect
+sudo docker run -d --name mirth-connect \
+           -p 8080:8080 \
+           -p 3306:3306 \
+           nextgenhealthcare/connect
 ```
 
