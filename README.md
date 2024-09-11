@@ -82,7 +82,6 @@ Mirth Connect
 ```
 sudo snap install docker
 sudo docker rm -f $(sudo docker ps -a -q)
-sudo docker pull nextgenhealthcare/connect
 sudo docker run -d --name mirth-connect \
            -p 8080:8080 \
            -p 3306:3306 \
