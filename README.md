@@ -93,6 +93,12 @@ sudo docker run --network=dcm4chee_network --name arc \
            -d dcm4che/dcm4chee-arc-psql:5.32.0
 ```
 
+Test with storescu 
+
+```
+storescu 10.0.0.200 11112 0002.DCM +sd -ll info -aec DCM4CHEE -xy 
+```
+
 Mirth Connect 
 4 GiB HDD 
 
