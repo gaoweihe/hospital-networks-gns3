@@ -40,6 +40,23 @@ write memory
 4 vCPU, 4 GB DRAM, 8 GiB HDD
 
 ```
+sudo tee /etc/netplan/50-cloud-init.yaml > /dev/null <<EOL
+network:
+  version: 2
+  ethernets:
+    ens3:
+      dhcp4: no
+      addresses:
+        - 10.0.0.200/24
+      gateway4: 10.0.0.1
+      nameservers:
+        addresses:
+          - 8.8.8.8
+          - 1.1.1.1
+EOL
+
+sudo netplan apply
+
 sudo snap install docker
 sudo docker network create dcm4chee_network
 sudo docker rm -f $(sudo docker ps -a -q)
@@ -80,6 +97,23 @@ Mirth Connect
 4 GiB HDD 
 
 ```
+sudo tee /etc/netplan/50-cloud-init.yaml > /dev/null <<EOL
+network:
+  version: 2
+  ethernets:
+    ens3:
+      dhcp4: no
+      addresses:
+        - 10.0.0.210/24
+      gateway4: 10.0.0.1
+      nameservers:
+        addresses:
+          - 8.8.8.8
+          - 1.1.1.1
+EOL
+
+sudo netplan apply
+
 sudo snap install docker
 sudo docker rm -f $(sudo docker ps -a -q)
 sudo docker run -d --name mirth-connect \
