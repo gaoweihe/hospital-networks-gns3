@@ -61,11 +61,13 @@ sudo snap install docker
 sudo docker network create dcm4chee_network
 sudo docker rm -f $(sudo docker ps -a -q)
 sudo docker run --network=dcm4chee_network --name ldap \
+           --restart unless-stopped
            -p 389:389 \
            -v /home/ubuntu/dcm4chee-arc/ldap:/var/lib/openldap/openldap-data \
            -v /home/ubuntu/dcm4chee-arc/slapd.d:/etc/openldap/slapd.d \
            -d dcm4che/slapd-dcm4chee:2.6.6-32.0
 sudo docker run --network=dcm4chee_network --name db \
+           --restart unless-stopped
            -p 5432:5432 \
            -e POSTGRES_DB=pacsdb \
            -e POSTGRES_USER=pacs \
@@ -75,6 +77,7 @@ sudo docker run --network=dcm4chee_network --name db \
            -v /home/ubuntu/dcm4chee-arc/db:/var/lib/postgresql/data \
            -d dcm4che/postgres-dcm4chee:16.2-32
 sudo docker run --network=dcm4chee_network --name arc \
+           --restart unless-stopped
            -p 8080:8080 \
            -p 8443:8443 \
            -p 9990:9990 \
@@ -123,6 +126,7 @@ sudo netplan apply
 sudo snap install docker
 sudo docker rm -f $(sudo docker ps -a -q)
 sudo docker run -d --name mirth-connect \
+           --restart unless-stopped
            -p 8080:8080 \
            -p 3306:3306 \
            nextgenhealthcare/connect
